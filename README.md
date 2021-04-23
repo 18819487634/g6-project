@@ -1,4 +1,8 @@
-# g6-project
+g6-project
+==============
+
+* 项目简介
+基于vue3.0，搭配mockjs使用g6完成数据可视化。
 
 ## Project setup
 ```
