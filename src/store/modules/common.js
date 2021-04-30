@@ -1,10 +1,9 @@
 import { createStore } from 'vuex'
 
-export default createStore({
-    namespaced: true,
-    state: {
+const common = {
+    state: () => ({
         loadStatus: false
-    },
+    }),
     mutations: {
         setLoadStatus (state, loadStatus) {
             state.loadStatus = loadStatus
@@ -15,8 +14,9 @@ export default createStore({
     modules: {
     },
     getters: {
-        getLoadStatus (state) {
-            return state.loadStatus
-        }
+        // loadStatus: state => state.loadStatus
+        getLoadStatus: state => state.loadStatus
     }
-})
+}
+
+export default common

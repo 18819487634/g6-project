@@ -7,6 +7,21 @@
   </div>
 </template>
 
+<script>
+import { defineComponent, provide } from 'vue'
+import { useStore } from 'vuex'
+
+export default defineComponent({
+    setup () {
+        const store = useStore()
+        // vue3 使用provide/inject依赖注入替换vue2的prototype继承
+        provide('store', store)
+        provide('test', 1111)
+    }
+})
+</script>
+
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

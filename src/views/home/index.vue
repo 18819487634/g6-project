@@ -5,17 +5,17 @@
 </template>
 
 <script>
-import { defineComponent, onMounted } from 'vue'
-import { mapGetters } from 'vuex'
+import { defineComponent, onMounted, inject } from 'vue'
 export default defineComponent({
-    // computed: {
-    //     ...mapGetters('common', ['loadStatus'])
-    // },
     setup () {
         const msg = '首页'
+        const store = inject('store')
+        const test = inject('test')
+        console.log(store.commit('setLoadStatus', true))
+        console.log(store.getters.getLoadStatus)
+        console.log(test)
         onMounted(() => {
             console.log('onMounted')
-            console.log(this.$store.state.loadStatus)
         })
         return {
             msg
