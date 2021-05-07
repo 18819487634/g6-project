@@ -25,6 +25,7 @@ module.exports = {
         'indent': [2, 4],
         'no-unused-vars': [0, {'vars': 'all', 'args': 'after-used'}],
         'no-multiple-empty-lines': [1, {'max': 2}],
+        'no-unused-vars': [0, {'vars': 'all', 'args': 'after-used'}],
     },
     overrides: [
         {
