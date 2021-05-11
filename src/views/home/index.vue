@@ -2,7 +2,7 @@
     <div>
         {{ msg }}
         {{ test }}
-        <div v-answer.value="'测试'"></div>
+        <div v-answer.value="'指令参数'"></div>
         <input type="text" v-focus>
         <div>{{count}}</div>
         <button @click="increment">点击+1</button>
@@ -11,8 +11,7 @@
 </template>
 
 <script>
-import { defineComponent, inject } from 'vue'
-import answer from '@/directive/answer'
+import { defineComponent, inject, resolveDirective } from 'vue'
 import mixin from '@/components/mixins/mixin'
 export default defineComponent({
     directives: {
@@ -20,10 +19,10 @@ export default defineComponent({
             mounted (el) {
                 el.focus()
             }
-        },
-        answer
+        }
     },
     setup () {
+        const answer = resolveDirective('answer')
         function myFn () {
             hello()
         }
@@ -44,7 +43,8 @@ export default defineComponent({
             double,
             increment,
             hello,
-            myFn
+            myFn,
+            answer
         }
     }
 })

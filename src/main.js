@@ -3,14 +3,17 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
-// import answer from '@/directive/answer'
+import answer from '@/directive/answer'
 
-const app = createApp(App)
+const app = createApp(App, { username: 'evan' })
+app.directive('answer', answer)
+
 
 // 全局处理error
 app.config.errorHandler = (err, vm, info) => {
     console.log(err)
 }
+
 
 // app.directive('focus', {
 //     mounted (el) {
@@ -25,3 +28,5 @@ app.config.errorHandler = (err, vm, info) => {
 app.config.globalProperties.$api = {}
 
 app.use(router).use(store).mount('#app')
+
+setTimeout(() => app.unmount('#app'), 5000)
