@@ -4,6 +4,7 @@
         <router-link to="/">Home</router-link>
     </div>
     <div>{{username}}</div>
+    <div id="teleport-target"></div>
     <router-view/>
   </div>
 </template>
@@ -18,6 +19,11 @@ export default defineComponent({
             type: String,
             default: ''
         }
+    },
+    mounted () {
+        // setTimeout(() => {
+        //     history.pushState({}, '1111', 'qqq/www/eee')
+        // }, 2000)
     },
     setup () {
         const store = useStore()

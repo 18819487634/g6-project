@@ -4,9 +4,13 @@ import router from './router'
 import store from './store'
 
 import answer from '@/directive/answer'
+import myConsole from '@/utils/myConsole'
 
 const app = createApp(App, { username: 'evan' })
 app.directive('answer', answer)
+
+// 自定义console
+app.use(myConsole)
 
 
 // 全局处理error
@@ -29,4 +33,4 @@ app.config.globalProperties.$api = {}
 
 app.use(router).use(store).mount('#app')
 
-setTimeout(() => app.unmount('#app'), 5000)
+// setTimeout(() => app.unmount('#app'), 5000)
