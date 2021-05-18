@@ -112,11 +112,6 @@ export default defineComponent({
             console.log('oldBar:   ' + oldBar)
         })
 
-
-        // const goTeleport = () => {
-
-        // }
-
         return {
             msg,
             count,
