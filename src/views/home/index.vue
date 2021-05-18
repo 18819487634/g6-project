@@ -18,12 +18,19 @@
         <button @click="myFn">sayHello</button>
         <compB :name="'fei'" :age="20" :sex="'nan'" />
         <div v-cloak>{{ message }}</div>
+
+        <div>{{ objCopy.count }}</div>
+        <button @click="handleObj">点击修改上面的值</button>
+        =====================================================
+        <div>foo:  {{ foo }}</div>
+        <div>bar: {{ bar }}</div>
+        <button @click="plusQqq">增加qqq</button>
     </div>
 </template>
 
 <script>
 
-import { defineComponent, inject, ref, resolveDirective } from 'vue'
+import { defineComponent, inject, ref, resolveDirective, reactive, isReactive, readonly, computed, watchEffect, watch } from 'vue'
 import mixin from '@/components/mixins/mixin'
 import compB from '@/components/compB'
 export default defineComponent({
@@ -52,6 +59,14 @@ export default defineComponent({
             hello()
         }
 
+        const obj = reactive({ count: 1 })
+        const objCopy = readonly(obj)
+        const handleObj = () => {
+            objCopy.count++
+        }
+
+        console.log(isReactive(obj))
+
         const { count, double, increment, hello } = mixin()
         const msg = '首页'
         const store = inject('store') // provide/inject依赖注入
@@ -73,6 +88,31 @@ export default defineComponent({
             }, 2000)
         }
 
+        const qqq = ref(1)
+
+        const doubleQqq = computed(() => qqq.value * 2)
+        watch(qqq,
+            (count, preCount) => {
+                console.log('newVal:  ' + count)
+                console.log('oldVal:  ' + preCount)
+            })
+
+        const plusQqq = () => {
+            qqq.value++
+            foo.value++
+            bar.value--
+        }
+
+        const foo = ref(0)
+        const bar = ref(100)
+        watch([foo, bar], ([newFoo, newBar], [oldFoo, oldBar]) => {
+            console.log('newFoo:   ' + newFoo)
+            console.log('oldFoo:   ' + oldFoo)
+            console.log('newBar:   ' + newBar)
+            console.log('oldBar:   ' + oldBar)
+        })
+
+
         // const goTeleport = () => {
 
         // }
@@ -87,7 +127,14 @@ export default defineComponent({
             answer,
             message,
             visible,
-            handleTeleport
+            handleTeleport,
+            objCopy,
+            handleObj,
+            qqq,
+            doubleQqq,
+            plusQqq,
+            foo,
+            bar
         }
     }
 })
